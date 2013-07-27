@@ -375,7 +375,7 @@
 
 		$level = 10;
 		foreach ($levels as $name => $no) {
-			if( strpos($user['caps'], $name) >= 0) {
+			if( strpos($user['caps'], $name) > 0) {
 				$level = $no;
 				break;
 			}
