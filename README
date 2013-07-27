@@ -1,0 +1,8 @@
+This is a script I threw together in one morning.  Suffice to say it may eat your kittens.  
+
+1) Make a backup of your database
+2) Change qa-config.php for stand-alone setup (comment out the QA_WORDPRESS_INTEGRATE_PATH definition and enter the correct values for the QA_MYSL_... definitions at the top)
+3) put this script somewhere on your website that allows you to run php scripts 
+4) edit the values at the top of this script to fit your install
+5) navigate to the script via your web browser
+6) delete this script from your server
