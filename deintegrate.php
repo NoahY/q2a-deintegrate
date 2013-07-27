@@ -384,20 +384,20 @@
 		// create user
 		printf("Creating user: %s<br/>", $user['name']);
 
-		do_query_sub('INSERT INTO ^users (userid, created, createip, email, passsalt, passcheck, level, handle, loggedin, loginip) '.
-			'VALUES ('.$user['userid'].', "'.$user['created'].'", COALESCE(INET_ATON("127.0.0.1"), 0), "'.$user['email'].'", "'.$salt.'", UNHEX("'.sha1(substr($salt, 0, 8).$pass.substr($salt, 8)).'"), '.(int)$level.', "'.mysql_real_escape_string($user['handle']).'", NOW(), COALESCE(INET_ATON("127.0.0.1"), 0))');
+		do_query_sub("INSERT INTO ^users (userid, created, createip, email, passsalt, passcheck, level, handle, loggedin, loginip) ".
+			"VALUES (".$user["userid"].", '".$user["created"]."', COALESCE(INET_ATON('127.0.0.1'), 0), '".$user["email"]."', '".$salt."', UNHEX('".sha1(substr($salt, 0, 8).$pass.substr($salt, 8))."'), ".(int)$level.", '".$mysqli->real_escape_string($user["handle"])."', NOW(), COALESCE(INET_ATON('127.0.0.1'), 0))");
 		
 		// add user info
 		printf("Creating user info for %s<br/>", $user['name']);
 
-		do_query_sub('INSERT INTO ^userprofile (userid,title,content) '.
-			'VALUES ("'.$user['userid'].'", "about", "'.mysql_real_escape_string($user['about']).'")');
-		do_query_sub('INSERT INTO ^userprofile (userid,title,content) '.
-			'VALUES ("'.$user['userid'].'", "location", "")');
-		do_query_sub('INSERT INTO ^userprofile (userid,title,content) '.
-			'VALUES ("'.$user['userid'].'", "name", "'.mysql_real_escape_string($user['name']).'")');
-		do_query_sub('INSERT INTO ^userprofile (userid,title,content) '.
-			'VALUES ("'.$user['userid'].'", "website", "'.mysql_real_escape_string($user['website']).'")');
+		do_query_sub("INSERT INTO ^userprofile (userid,title,content) ".
+			"VALUES ('".$user["userid"]."', 'about', '".$mysqli->real_escape_string($user["about"])."')");
+		do_query_sub("INSERT INTO ^userprofile (userid,title,content) ".
+			"VALUES ('".$user["userid"]."', 'location', '')");
+		do_query_sub("INSERT INTO ^userprofile (userid,title,content) ".
+			"VALUES ('".$user["userid"]."', 'name', '".$mysqli->real_escape_string($user["name"])."')");
+		do_query_sub("INSERT INTO ^userprofile (userid,title,content) ".
+			"VALUES ('".$user["userid"]."', 'website', '".$mysqli->real_escape_string($user["website"])."')");
 
 		$to      = $user['email'];
 		$subject = '['.$site_title.'] Password Change';
@@ -482,7 +482,7 @@ Thanks and sorry for the inconvenience,
 		
 		$index=0;
 		foreach ($oldprofileflags as $title => $flags)
-			$sql.=($index ? ', ' : '')."('".mysql_real_escape_string($title)."', ".(++$index).", ".(int)@$oldprofileflags[$title].")";
+			$sql.=($index ? ', ' : '')."('".$mysqli->real_escape_string($title)."', ".(++$index).", ".(int)@$oldprofileflags[$title].")";
 				
 		return $sql;
 	}
