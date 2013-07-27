@@ -1,4 +1,4 @@
-This is a script I threw together in one morning.  Suffice to say it may eat your kittens.  
+This is a script for deintegrating Q2A from Wordpress.  If it works as designed, it will copy all your Wordpress users to the Q2A database and send them each an email with a new password for their account.  I threw it together in one morning, so suffice to say it may also eat your kittens.  
 
 1) Make a backup of your database
 2) Change qa-config.php for stand-alone setup (comment out the QA_WORDPRESS_INTEGRATE_PATH definition and enter the correct values for the QA_MYSL_... definitions at the top)
